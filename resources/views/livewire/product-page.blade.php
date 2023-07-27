@@ -43,7 +43,7 @@
           </div>
           <div class="select-group">
               <select wire:model='brand_id' class="form-select" aria-label="Merk">
-                  <option value='' hidden selected>Pilih Merk</option>
+                  <option value='' hidden selected>Pilih Pabrik</option>
                   @foreach ($ProductBrands as $ProductBrand)
                       <option value="{{ $ProductBrand->id }}">{{ $ProductBrand->nama_merk }}</option>
                   @endforeach
@@ -69,7 +69,7 @@
                   <option value="Generic">Generic</option>
                   <option value="Bebas">Bebas</option>
                   <option value="Paten">Paten</option>
-                  <option value="Paten">Lainnya</option>
+                  {{-- <option value="Paten">Lainnya</option> --}}
               </select>
               @error('type')
                 <small class="error">{{ $message }}</small>  
