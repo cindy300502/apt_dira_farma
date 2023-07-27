@@ -1,0 +1,23 @@
+.report-page {
+
+    .content {
+
+        .card {
+            
+            .card-title-container {
+                padding: 10px 20px;
+                display: flex;
+                flex-direction: row;
+                column-gap: 20px;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+
+                .card-title {
+                    font-weight: 600;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

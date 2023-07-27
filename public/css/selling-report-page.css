@@ -1,0 +1,14 @@
+.report-page .content .card .card-title-container {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.report-page .content .card .card-title-container .card-title {
+  font-weight: 600;
+  margin: 0;
+}/*# sourceMappingURL=selling-report-page.css.map */

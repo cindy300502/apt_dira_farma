@@ -1,0 +1,63 @@
+@startuml
+
+actor Admin as admin
+actor Admin as admin
+boundary LandingPage as landing_page
+boundary LoginPage as login_page
+boundary Dashboard as dashboard
+boundary BrandPage as brands
+
+
+entity Brands as brand_entity
+
+database brand as brand_table
+
+activate admin
+admin -> landing_page
+
+activate landing_page
+landing_page -> login_page
+deactivate landing_page
+
+
+activate login_page
+login_page -> login_page : validasi data login user
+
+login_page -> dashboard
+deactivate login_page
+
+activate dashboard
+dashboard -> brands : akses menu merk
+deactivate dashboard
+
+activate brands
+brands -> brands :  validasi data merk 
+activate brands
+
+brands -> admin : notifikasi validasi gagal
+
+
+brands -> brand_entity : data di validasi
+deactivate brands
+
+activate brand_entity
+brand_entity -> brand_table : simpan data merk
+deactivate brand_entity
+
+activate brand_table
+brand_table -> brands : data kategori berhasil disimpan
+deactivate brand_table
+
+brands -> landing_page : admin logout
+deactivate brands
+
+activate landing_page
+landing_page -> admin
+deactivate landing_page
+deactivate admin
+
+
+
+
+
+@enduml

@@ -1,0 +1,64 @@
+@startuml
+
+actor Admin as admin
+boundary LandingPage as landing_page
+boundary LoginPage as login_page
+boundary Dashboard as dashboard
+boundary CategoriesPage as categori_page
+
+
+entity categori as categori_entity
+
+database categories as categories_table
+
+activate admin
+admin -> landing_page
+
+activate landing_page
+landing_page -> login_page
+deactivate landing_page
+
+
+activate login_page
+login_page -> login_page : validasi data login user
+
+login_page -> dashboard
+deactivate login_page
+
+activate dashboard
+dashboard -> categori_page : akses menu kategori
+deactivate dashboard
+
+activate categori_page
+categori_page -> categori_page : validasi data kategori
+activate categori_page
+
+categori_page -> admin : notifikasi validasi gagal
+
+
+categori_page -> categori_entity : data di validasi
+deactivate categori_page
+
+activate categori_entity
+categori_entity -> categories_table : simpan data kategori
+deactivate categori_entity
+
+activate categories_table
+categories_table -> categori_page : data kategori berhasil disimpan
+deactivate categories_table
+
+
+categori_page -> landing_page : admin logout
+deactivate categori_page
+
+activate landing_page
+landing_page -> admin
+deactivate landing_page
+deactivate admin
+
+
+
+
+
+
+@enduml

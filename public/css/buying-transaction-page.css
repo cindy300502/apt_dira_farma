@@ -1,0 +1,31 @@
+.buying-transaction-page {
+  padding-bottom: 10px;
+}
+.buying-transaction-page section.content .card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.buying-transaction-page section.content .card .card-body .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+.buying-transaction-page section.content .card .card-body .input-group input {
+  width: 100%;
+}
+.buying-transaction-page section.content .card .card-body .input-group small.error {
+  margin-left: 5px;
+  color: red;
+}
+.buying-transaction-page section.content .card .card-body .button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.buying-transaction-page section.content .card .card-body .button-container button {
+  max-width: 320px;
+}/*# sourceMappingURL=buying-transaction-page.css.map */

@@ -1,0 +1,55 @@
+@startuml
+
+actor Admin as admin
+boundary LandingPage as landingpage
+boundary LoginPage as loginpage
+boundary Dashboard as dashboard
+boundary SupplierPage as supplierpage
+
+entity Suppliers as supplier_entity
+
+database Supplier as suppliertable
+
+activate admin
+admin -> landingpage
+
+activate landingpage
+landingpage -> loginpage 
+deactivate landingpage
+
+activate loginpage
+loginpage -> loginpage : validasi data login user
+
+loginpage -> dashboard
+deactivate loginpage
+
+activate dashboard
+dashboard -> supplierpage : akses menu supplier
+deactivate dashboard
+
+activate supplierpage
+supplierpage -> supplierpage : validasi data supplier
+activate supplierpage
+
+supplierpage -> admin : notifikasi validasi gagal
+
+
+supplierpage -> supplier_entity : data di validasi
+deactivate supplierpage
+
+activate supplier_entity
+supplier_entity -> suppliertable : simpan data supplier
+deactivate supplier_entity
+
+activate suppliertable
+suppliertable -> supplierpage : data supplier berhasil disimpan
+deactivate suppliertable
+
+supplierpage -> landingpage : admin logout
+deactivate supplierpage
+
+activate landingpage
+landingpage -> admin
+deactivate landingpage
+deactivate admin
+@enduml

@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+aside.main-sidebar {
+  background-color: #2b3f57;
+}
+aside.main-sidebar .brand-link {
+  text-decoration: none;
+}
+aside.main-sidebar .sidebar .info a {
+  text-decoration: none;
+}
+aside.main-sidebar .sidebar a.nav-link:hover {
+  background-color: #1e2b3c;
+}
+
+.notification-card {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: row;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  min-width: 200px;
+  row-gap: 10px;
+  padding: 10px 20px;
+  background-color: rgb(116, 232, 116);
+  border-radius: 4px;
+  border: 2px solid rgb(116, 232, 116);
+  z-index: 99;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: translateX(1000vw);
+  transition: 0.3s all ease-in-out;
+}
+.notification-card.active {
+  opacity: 100%;
+  transform: translateX(0);
+}
+
+.powergrid-container .dt--top-section .row div div div.input-group {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: flex-end;
+  gap: 0;
+}
+.powergrid-container .dt--top-section .row div div div.input-group input {
+  width: 100%;
+}
+.powergrid-container .power-grid-table tbody tr td div {
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.powergrid-container .power-grid-table tbody tr td .btn-small {
+  font-size: 0.7rem;
+  background-color: salmon !important;
+}
+
+.select-group select {
+  width: 100%;
+}
+.select-group small.error {
+  margin-left: 5px;
+  color: red;
+}/*# sourceMappingURL=app.css.map */

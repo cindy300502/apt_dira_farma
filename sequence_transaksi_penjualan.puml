@@ -1,0 +1,82 @@
+@startuml
+
+actor Admin as admin
+boundary LandingPage as landing_page
+boundary LoginPage as login_page
+boundary DashboardPage as admin_page
+boundary TransactionPage as transaction_page
+database products as products_table
+control TransactionController as transaction_controller
+
+entity selling_transactions as selling_transactions_entity
+database selling_transactions as selling_transactions_table
+entity product_transactions as product_transactions_entity
+database product_transactions as product_transactions_table
+
+
+activate admin
+admin -> landing_page
+
+activate landing_page
+landing_page -> login_page
+deactivate landing_page
+
+activate login_page
+login_page -> login_page : validasi data login user
+
+login_page -> admin_page
+deactivate login_page
+
+activate admin_page
+admin_page -> transaction_page : akses menu transaksi
+deactivate admin_page
+
+activate transaction_page
+activate products_table
+
+products_table -> transaction_page : data produk
+deactivate products_table
+
+transaction_page -> transaction_controller : proses transaksi
+activate transaction_controller 
+
+transaction_controller -> selling_transactions_entity
+activate selling_transactions_entity
+selling_transactions_entity -> selling_transactions_table : simpan transaksi ke database
+activate selling_transactions_table
+selling_transactions_table -> selling_transactions_entity : id transaksi tersimpan
+deactivate selling_transactions_table
+selling_transactions_entity -> transaction_controller : transaksi tersimpan
+
+selling_transactions_entity -> product_transactions_entity : id transaksi
+deactivate selling_transactions_entity
+
+activate product_transactions_entity
+product_transactions_entity -> product_transactions_table : simpan data transaksi produk
+activate product_transactions_table
+product_transactions_table -> product_transactions_entity : data tersimpan
+deactivate product_transactions_table
+
+product_transactions_entity -> transaction_controller
+deactivate product_transactions_entity
+
+transaction_controller -> transaction_page : transaksi berhasil dilakukan
+deactivate transaction_controller
+
+transaction_page -> admin : logout
+deactivate transaction_page
+
+deactivate admin
+
+
+' transaction_controller -> product_transactions_entity
+' activate product_transactions_entity
+
+
+
+
+
+
+
+
+@enduml

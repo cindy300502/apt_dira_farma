@@ -1,0 +1,87 @@
+@startuml
+
+actor Admin as admin
+boundary LandingPage as landing_page
+boundary LoginPage as login_page
+boundary DashboardPage as admin_page
+boundary ProdukPage as product_page
+
+database brands as brands_table
+database categories as categories_table
+
+entity Produk as product_entity
+
+database products as product_table
+
+
+activate admin
+admin -> landing_page
+
+activate landing_page
+landing_page -> login_page
+deactivate landing_page
+
+activate login_page
+login_page -> login_page : validasi data login user
+
+login_page -> admin_page
+deactivate login_page
+
+activate admin_page
+admin_page -> product_page : akses menu produk
+deactivate admin_page
+
+activate product_page
+activate brands_table
+activate categories_table
+
+brands_table -> product_page : data produk
+deactivate brands_table
+
+categories_table -> product_page : data kategori
+deactivate categories_table
+
+product_page -> product_page : validasi data produk
+activate product_page #Yellow
+
+product_page -> admin : notifikasi validasi gagal
+
+product_page -> product_entity : data di validasi
+deactivate product_page
+
+activate product_entity
+product_entity -> product_table : simpan data produk ke database
+deactivate product_entity
+
+activate product_table
+product_table -> product_page : data produk berhasil di simpan
+deactivate product_table
+
+product_page -> landing_page : admin logout
+deactivate product_page
+
+activate landing_page
+landing_page -> admin
+deactivate landing_page
+deactivate admin
+
+
+
+
+
+
+
+
+' product_page -> product_page : validasi data produk
+
+
+
+
+
+
+
+
+
+
+
+@enduml

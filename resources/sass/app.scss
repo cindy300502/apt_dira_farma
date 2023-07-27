@@ -1,0 +1,123 @@
+@import "_var.scss";
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+aside.main-sidebar {
+    background-color: #2b3f57;
+
+    .brand-link {
+        text-decoration: none;
+    }
+
+    .sidebar {
+
+        .info {
+            
+            a {
+                text-decoration: none;
+            }
+        }
+
+        a.nav-link:hover {
+            background-color: darken(#2b3f57, 8%);
+        }
+    }
+}
+
+
+// Notification Card Styling
+.notification-card {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    min-width: 200px;
+    row-gap: 10px;
+    padding: 10px 20px;
+    background-color: $PrimaryGreen;
+    border-radius: 4px;
+    border: 2px solid $PrimaryGreen;
+    z-index: 99;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0;
+    transform: translateX(1000vw);
+    transition: 0.3s all ease-in-out;
+    
+    &.active {
+        opacity: 100%;
+        transform: translateX(0);
+
+    }
+
+}
+
+// Powergird Table Styles
+.powergrid-container {
+
+    .dt--top-section {
+        
+        .row {
+
+            div {
+
+                div {
+
+                    div.input-group {
+                        display: flex;
+                        flex-direction: row !important;
+                        justify-content: flex-end;
+                        gap: 0;
+
+                        input {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .power-grid-table {
+
+        tbody {
+
+            tr {
+
+                td {
+
+                    div {
+                        width: 100%;
+                        height: fit-content;
+                        white-space: pre-wrap;
+                        word-wrap: break-word;
+                    }
+
+                    .btn-small {
+                        font-size: 0.7rem;
+                        background-color: salmon !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.select-group {
+    
+    select {
+        width: 100%;
+    }
+
+    small.error {
+        margin-left: 5px;
+        color: red;
+    }
+}
+

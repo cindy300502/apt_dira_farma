@@ -1,0 +1,158 @@
+@import "_var.scss";
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.body {
+    position: relative;
+}
+
+
+#product-card-container {
+    align-items: stretch;
+    justify-content: space-evenly;
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+
+        
+        .button-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        .card-content {
+            padding: 0 0 10px 0;
+
+            .row-wrapper {
+                display: flex;
+                flex-direction: row;
+                column-gap: 20px;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+
+    }
+
+    
+    .details-button {
+        background-color: #131313;
+        border-color: #131313;
+
+        &:hover {
+            background-color: #ffc800;
+            border-color: #ffc800;
+        }
+    }
+}
+
+// Product Pagination
+.pagination-container {
+    width: 100%;
+    padding: 10px 0;
+    display: grid;
+    place-items: center;
+}
+
+.description-modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 501;
+    padding-top: 120px;
+
+    display: none;
+
+    &.active {
+        display: block;
+    }
+
+    .container {
+        display: grid;
+        place-items: center;
+
+        .product-card-description {
+            width: 100%;
+            background-color: white;
+            border-radius: 4px;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            column-gap: 20px;
+            row-gap: 10px;
+
+            .image-container {
+                width: 100%;
+                max-width: 220px;
+                height: fit-content;
+                display: block;
+
+                &.hide {
+                    display: none;
+                }
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+            }
+
+            .content-wrapper {
+                flex-basis: 320px;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                .card-title {
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                }
+
+                .row-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    column-gap: 20px;
+
+                    span:first-child {
+                        width: 120px;
+                    }
+                }
+
+                .card-text {
+                    text-align: justify;
+                }
+
+                .button-container {
+                    flex-grow: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    justify-content: flex-end;
+                    
+                    
+                }
+
+            }
+
+        }
+    }
+    
+    
+
+}

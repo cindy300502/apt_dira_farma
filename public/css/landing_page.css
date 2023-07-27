@@ -1,0 +1,17 @@
+#product-card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+.container.search {
+   padding-top: 20px ;
+   display: flex;
+   flex-direction: row-reverse;
+}
+.container.search .input-group {
+    max-width: 650px;
+}

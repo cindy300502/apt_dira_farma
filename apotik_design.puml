@@ -1,0 +1,125 @@
+@startuml
+
+entity users {
+    * id BIGINTEGER PRIMARYKEY
+    --
+    * nama STRING
+    * email STRING
+    * password STRING
+    --
+    * created_at datetime
+    * updated_at datetime
+}
+
+entity supplier {
+    * id BIGINTEGER PRIMARYKEY
+    --
+    * nama_supplier STRING
+    * alamat TEXT
+    * telepon INT
+    --
+    * created_at datetime
+    * updated_at datetime
+}
+
+entity categories {
+    * id BIGINTEGER PRIMARYKEY
+    --
+    * nama_kategori STRING
+    * deskripsi TEXT
+    --
+    * created_at datetime
+    * updated_at datetime
+}
+
+entity products {
+    * id BIGINTEGER PRIMARYKEY
+    --
+    * id_kategori FOREIGN(Kategori.id)
+    * id_brand FOREIGN(product_brands.id)
+    --
+    * nama_produk STRING
+    * harga_jual INT
+    * stok INT
+    * expired date
+    tipe STRING
+    --
+    deskripsi STRING
+    foto STRING
+    --
+    * created_at datetime
+    * updated_at datetime
+}
+
+entity product_brands {
+    * id BIGINTEGER PRIMARYKEY
+    --
+    * nama_merk STRING
+    --
+    * created_at datetime
+    * updated_at datetime
+}
+
+entity buying_transactions {
+    * id BIGINTEGER PRIMARYKEY
+    --
+    * id_supplier FOREIGN(supplier.id)
+    * id_produk FOREIGN(supplier.id)
+    * id_brand FOREIGN(product_brands.id)
+    --
+    * total_item INT
+    * harga INT
+    --
+    * created_at datetime
+    * updated_at datetime
+}
+
+entity selling_transactions {
+    * id BIGINTEGER PRIMARYKEY
+    --
+    * id_user FOREIGN(users.id)
+    --
+    * dibayarkan INT
+    --
+    * created_at datetime
+    * updated_at datetime
+}
+
+entity transaction_products {
+    * id BIGINTEGER PRIMARYKEY
+    --
+    * id_penjualan FOREIGN(selling_transactions.id)
+    * id_produk FOREIGN(products.id)
+    --
+    * total_item INT2
+    --
+    * created_at datetime
+    * updated_at datetime 
+}
+
+' entity recipes {
+'     * id BIGINTEGER PRIMARYKEY
+'     --
+'     * foto STRING
+'     --
+'     * id_penjualan FOREIGN(selling_transactions.id)
+'     --
+'     * created_at datetime
+'     * updated_at datetime
+' }
+
+' Relation
+products }o--|| categories
+buying_transactions }o--|| supplier
+buying_transactions }o--|| products
+buying_transactions }o--|| product_brands
+products }|--|| product_brands
+
+transaction_products }o--|| products
+selling_transactions ||--|{ transaction_products
+
+selling_transactions }o--|| users
+
+' selling_transactions ||--o{ recipes
+
+@enduml
