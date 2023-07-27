@@ -59,7 +59,7 @@
             </div>
             <div class="select-group">
                 <select wire:model='id_brand' class="form-select" aria-label="Brand">
-                    <option value='' hidden selected>Pilih merk</option>
+                    <option value='' hidden selected>Pilih Pabrik</option>
                     @foreach ($Brand as $brand)
                         <option value="{{ $brand->id }}">{{ $brand->nama_merk }}</option>
                     @endforeach
@@ -69,7 +69,7 @@
                 @enderror
             </div>
             <div class="input-group">
-              <input wire:model='total_item' type="number" class="form-control" placeholder="Jumlah item" min="0">
+              <input wire:model='total_item' type="number" class="form-control" placeholder="Jumlah item/strip" min="0">
               @error('total_item')
                 <small class="error">{{ $message }}</small>
               @else
@@ -77,7 +77,7 @@
               @enderror
             </div>
             <div class="input-group">
-              <input wire:model='harga' type="number" class="form-control" placeholder="Harga">
+              <input wire:model='harga' type="number" class="form-control" placeholder="Harga/Box">
               @error('harga')
                 <small class="error">{{ $message }}</small>
               @else
