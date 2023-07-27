@@ -13,9 +13,15 @@
                 <i class="fas fa-bars ms-1"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="btn btn-primary btn-x0 text-uppercase" href="{{ url('login') }}">Login</a></li>
-                </ul>
+                @auth
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="btn btn-primary btn-x0 text-uppercase" href="{{ route('home-page') }}">Admin Dashboard</a></li>
+                    </ul>
+                @else
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="btn btn-primary btn-x0 text-uppercase" href="{{ url('login') }}">Login</a></li>
+                    </ul>
+                @endauth
             </div>
         </div>
     </nav>
@@ -44,6 +50,10 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->nama_produk }}</h5>
                         <div class="card-content">
+                            <div class="row-wrapper">
+                                <span>Harga</span>
+                                <span>{{ formatRupiah($product->harga_jual) }}</span>
+                            </div>
                             <div class="row-wrapper">
                                 <span>Kategori</span>
                                 <span>{{ $product->category->nama_kategori }}</span>
@@ -83,6 +93,10 @@
                     <div class="content-wrapper">
                         <span class="card-title">Amoxilin</span>
                         <div class="row-wrapper">
+                            <span>Harga</span>
+                            <span class="card-price"></span>
+                        </div>
+                        <div class="row-wrapper">
                             <span>Pabrik</span>
                             <span class="card-brand"></span>
                         </div>
@@ -113,6 +127,21 @@
     <script src="{{ asset('/') }}//cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
     <script>
+        function formatToRupiah(number) {
+        if (typeof number !== 'number') {
+            throw new Error('Input must be a number.');
+        }
+
+        const numberString = number.toString().replace(/,/g, '');
+        const formattedNumber = numberString.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        const rupiahString = `Rp ${formattedNumber}`;
+
+        return rupiahString;
+        }
+
+
+
+
         // handle Product Description modal
         
         function showDescriptionModal(product) {
@@ -122,6 +151,7 @@
             descriptionModal.addClass('active')
             
             descriptionModal.find('.card-title').first().text(product.nama_produk)
+            descriptionModal.find('.card-price').first().text(formatToRupiah(product.harga_jual))
             descriptionModal.find('.card-brand').first().text(product.brand.nama_merk)
             descriptionModal.find('.card-category').first().text(product.category.nama_kategori)
             descriptionModal.find('.card-expired').first().text(product.expired)
