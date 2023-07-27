@@ -79,6 +79,7 @@ final class ProductsTable extends PowerGridComponent
             ->addColumn('nama_produk')
             ->addColumn('merk', fn (Product $model) => $model->brand->nama_merk)
             ->addColumn('harga_jual')
+            ->addColumn('harga_jual_formatted', fn (Product $model) => formatRupiah($model->harga_jual))
             ->addColumn('stok')
             ->addColumn('expired')
             ->addColumn('tipe')
@@ -106,6 +107,11 @@ final class ProductsTable extends PowerGridComponent
                 ->searchable(),
     
             Column::make('Harga Jual', 'harga_jual')    
+                ->searchable()
+                ->hidden()
+                ->sortable(),
+            
+            Column::make('Harga Jual', 'harga_jual_formatted', 'harga_jual')    
                 ->searchable()
                 ->sortable(),
     

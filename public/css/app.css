@@ -63,10 +63,14 @@ aside.main-sidebar .sidebar a.nav-link:hover {
   background-color: salmon !important;
 }
 
-.select-group select {
+.select-group select, .input-group select {
   width: 100%;
 }
-.select-group small.error {
+.select-group small.error, .input-group small.error {
   margin-left: 5px;
   color: red;
+}
+.select-group small.info, .input-group small.info {
+  text-indent: 10px;
+  color: #505050;
 }/*# sourceMappingURL=app.css.map */

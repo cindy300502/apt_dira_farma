@@ -109,7 +109,7 @@ aside.main-sidebar {
     }
 }
 
-.select-group {
+.select-group, .input-group {
     
     select {
         width: 100%;
@@ -118,6 +118,11 @@ aside.main-sidebar {
     small.error {
         margin-left: 5px;
         color: red;
+    }
+
+    small.info {
+        text-indent: 10px;
+        color: #505050;
     }
 }
 

@@ -72,12 +72,16 @@
               <input wire:model='total_item' type="number" class="form-control" placeholder="Jumlah item" min="0">
               @error('total_item')
                 <small class="error">{{ $message }}</small>
+              @else
+                <small class="info">*Jumlah item dibeli per strip</small>
               @enderror
             </div>
             <div class="input-group">
               <input wire:model='harga' type="number" class="form-control" placeholder="Harga">
               @error('harga')
                 <small class="error">{{ $message }}</small>
+              @else
+                <small class="info">*Harga item dibeli per dus</small>
               @enderror
             </div>
 
