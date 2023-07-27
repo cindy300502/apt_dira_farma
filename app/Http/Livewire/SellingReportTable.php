@@ -101,9 +101,9 @@ final class SellingReportTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Dibayarkan', 'dibayarkan_formatted',' dibayarkan'),
-            Column::make('Diskon', 'diskon_formatted',' diskon'),
             Column::make('Sub Total', 'sub_total_formatted',' sub_total'),
+            Column::make('Diskon', 'diskon_formatted',' diskon'),
+            Column::make('Dibayarkan', 'dibayarkan_formatted',' dibayarkan'),
 
             Column::make('User', 'user_name')
                 ->searchable(),

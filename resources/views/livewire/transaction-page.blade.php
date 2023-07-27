@@ -47,7 +47,7 @@
                                             {{-- <input wire:change='setQty({{ $product->id }}, $event.target.value)' class="form-control" type="number" value='{{ $this->getQty($product->id) }}' > --}}
                                         </td>
                                         <td>
-                                            <button wire:click='delete_selected({{ $product->id }})' class="btn btn-danger btn-small">
+                                            <button wire:click="delete_selected({{ $product }})" class="btn btn-danger btn-small">
                                                 Hapus
                                             </button>
                                         </td>
@@ -75,7 +75,7 @@
                         @enderror
                         <div class="row-wrapper">
                             <span class="row-title">Harga</span>
-                            <span class="row-item">{{ formatRupiah($this->subTotal) }}</span>
+                            <span class="row-item">{{ formatRupiah($this->sub_total) }}</span>
                         </div>
                         <div class="row-wrapper">
                             <span class="row-title"></span>

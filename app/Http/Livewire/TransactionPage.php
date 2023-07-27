@@ -17,15 +17,19 @@ class TransactionPage extends Component
     // Binding Variable;
     public $selected_product;
     public $selected_product_ids;
-    public $subTotal;
+    public $sub_total;
     public $discount;
     public $discount_price;
     public $payment;
 
     public function updatedDiscount() {
         $this->validate();
-        $this->discount_price = $this->subTotal * ((int) $this->discount / 100);
-        $this->payment = (int) $this->subTotal - (int) $this->discount_price;
+        $this->discount_price = $this->sub_total * ((int) $this->discount / 100);
+        $this->payment = (int) $this->sub_total - (int) $this->discount_price;
+    }
+
+    public function updatedsub_total() {
+        dd('up');
     }
 
 
@@ -67,8 +71,8 @@ class TransactionPage extends Component
         }
         array_push($this->selected_product_ids, $id);
         
-        $this->subTotal = $this->calculateSubTotal();
-        $this->payment = (int) $this->subTotal - (int) $this->discount_price;
+        $this->sub_total = $this->calculatesub_total();
+        $this->payment = (int) $this->sub_total - (int) $this->discount_price;
         
         $msg = 'Produk ditambahkan';
         $this->dispatchBrowserEvent('setNotification', ['message' => $msg]);
@@ -79,7 +83,7 @@ class TransactionPage extends Component
 
         $this->selected_product = [];
         $this->selected_product_ids = [];
-        $this->subTotal = 0;
+        $this->sub_total = 0;
         $this->discount = 0;
         $this->discount_price = 0;
         $this->payment = 0;
@@ -102,7 +106,7 @@ class TransactionPage extends Component
         $SellingTransaction->id_user = Auth::user()->id;
         $SellingTransaction->dibayarkan = $this->payment;
         $SellingTransaction->diskon = $this->discount;
-        $SellingTransaction->sub_total = $this->subTotal;
+        $SellingTransaction->sub_total = $this->sub_total;
         $SellingTransaction->save();
 
         foreach ($this->selected_product as $product) {
@@ -134,7 +138,7 @@ class TransactionPage extends Component
 
         $this->selected_product = [];
         $this->selected_product_ids = [];
-        $this->subTotal = 0;
+        $this->sub_total = 0;
         $this->discount = 0;
         $this->discount_price = 0;
         $this->payment = 0;
@@ -159,10 +163,10 @@ class TransactionPage extends Component
         return false;
     }
 
-    public function delete_selected($id) {
-        dd($id);
-        $this->deleteSelectedId($this->selected_product_ids, $id);
-        $this->deleteSelectedProduct($this->selected_product, $id);
+    public function delete_selected($product) {
+        $product_id = $product['id'];
+        $this->deleteSelectedId($this->selected_product_ids, $product_id);
+        $this->deleteSelectedProduct($this->selected_product, $product_id);
     }
 
     public function setQty($product, $qty) {
@@ -178,19 +182,20 @@ class TransactionPage extends Component
     }
 
     public function calculateTotal($price, $qty) {
-        $this->subTotal = $this->calculateSubTotal();
+        $this->sub_total = $this->calculatesub_total();
+        $this->payment = (int) $this->sub_total - (int) $this->discount_price;
         return $price * $qty;
     }
 
-    public function calculateSubTotal() {
-        $subTotal = 0;
+    public function calculatesub_total() {
+        $sub_total = 0;
         foreach ($this->selected_product as $product) {
             $price = $product['price'];
             $qty = $product['qty'];
             $calculated = (int)$price * (int)$qty;    
-            $subTotal += $calculated;
+            $sub_total += $calculated;
         }
-        return $subTotal;
+        return $sub_total;
     }
 
 }
